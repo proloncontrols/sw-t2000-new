@@ -219,6 +219,7 @@ Public MustInherit Class CProduct
 
     '----------------------------------------------------------------------------------------------
     Private Function GetTransferCount(ByRef Segment As CSegment, PayloadSize As Integer) As Integer
+        Return 0
     End Function
 
 End Class
