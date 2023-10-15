@@ -1,0 +1,33 @@
+﻿
+Imports System.IO.Ports
+
+Public Class CT2000
+    Inherits CThermostat
+
+    Const SECTION_DATA_ORIGIN As UInt32 = &H0700_0000UI
+    Const SECTION_DATA_LENGTH As UInt32 = &H0000_1000UI
+    Const SECTION_DATA_SECTOR_SIZE = &H0000_0000UI
+
+    Const SECTION_FIRMWARE_INT_ORIGIN As UInt32 = &H0800_0000UI
+    Const SECTION_FIRMWARE_INT_LENGTH As UInt32 = &H0010_0000UI
+    Const SECTION_FIRMWARE_INT_SECTOR_SIZE = &H0002_0000UI
+
+    Const SECTION_ASSET_ORIGIN As UInt32 = &H9000_0000UI
+    Const SECTION_ASSET_LENGTH As UInt32 = &H03F8_0000UI
+    Const SECTION_ASSET_SECTOR_SIZE = &H0001_0000UI
+
+    Const SECTION_FIRMWARE_EXT_ORIGIN As UInt32 = &H93F8_0000UI
+    Const SECTION_FIRMWARE_EXT_LENGTH As UInt32 = &H0008_0000UI
+    Const SECTION_FIRMWARE_EXT_SECTOR_SIZE = &H0001_0000UI
+
+    '----------------------------------------------------------------------------------------------
+    Public Sub New(ByRef NewOwner As Form, ByRef NewPort As SerialPort)
+        MyBase.New(NewOwner, NewPort, PRODUCT_THERMOSTAT_T2000)
+
+        Sections.Add(New CSection(ESectionCategory.Data, SECTION_DATA_ORIGIN, SECTION_DATA_LENGTH, SECTION_DATA_SECTOR_SIZE))
+        Sections.Add(New CSection(ESectionCategory.Firmware, SECTION_FIRMWARE_INT_ORIGIN, SECTION_FIRMWARE_INT_LENGTH, SECTION_FIRMWARE_INT_SECTOR_SIZE))
+        Sections.Add(New CSection(ESectionCategory.Asset, SECTION_ASSET_ORIGIN, SECTION_ASSET_LENGTH, SECTION_ASSET_SECTOR_SIZE))
+        Sections.Add(New CSection(ESectionCategory.Firmware, SECTION_FIRMWARE_EXT_ORIGIN, SECTION_FIRMWARE_EXT_LENGTH, SECTION_FIRMWARE_EXT_SECTOR_SIZE))
+    End Sub
+
+End Class
