@@ -90,11 +90,11 @@ Public MustInherit Class CProduct
                 End If
                 Select Case Section.Category
                     Case ESectionCategory.Firmware
-                        Segments.Add(New CSegmentFirmware(HexSegment))
+                        Segments.Add(New CSegmentFirmware(HexSegment, Section))
                     Case ESectionCategory.Asset
-                        Segments.Add(New CSegmentAsset(HexSegment, (HexSegment.Address - Section.Origin) / Section.SectorSize))
+                        Segments.Add(New CSegmentAsset(HexSegment, (HexSegment.Address - Section.Origin) / Section.SectorSize, Section))
                     Case ESectionCategory.Data
-                        Segments.Add(New CSegmentData(HexSegment))
+                        Segments.Add(New CSegmentData(HexSegment, Section))
                 End Select
             Next
 

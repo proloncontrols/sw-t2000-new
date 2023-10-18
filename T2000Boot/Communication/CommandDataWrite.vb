@@ -15,10 +15,13 @@ Public Class CCommandDataWrite
     End Enum
 
     '----------------------------------------------------------------------------------------------
-    Public ReadOnly Property PayloadSize As Integer
+    Public Property PayloadSize As Integer
         Get
             Return Base.PayloadSize
         End Get
+        Set(value As Integer)
+            Base.PayloadSize = value
+        End Set
     End Property
 
     '----------------------------------------------------------------------------------------------
